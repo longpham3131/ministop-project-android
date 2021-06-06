@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+
+    <ImageView
+        android:id="@+id/imgItemProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        app:srcCompat="@drawable/adv_header_login" />
+    <LinearLayout
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txtItemProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Tên sản phẩm"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/txtItemProductCost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="17dp"
+            android:text="20 000 đồng" />
+
+        <Button
+            android:id="@+id/btnItemAddToCart"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mua ngay" />
+    </LinearLayout>
+</LinearLayout>

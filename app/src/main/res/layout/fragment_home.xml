@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Theme.MyProject"
+    android:background="@drawable/sub_menu"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".ui.home.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_weight="6"
+        android:background="#ff0000"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="13dp"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="257dp"
+                android:layout_weight="1"
+                android:backgroundTint="#ff0000"
+                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
+                android:text="TP.HCM"
+                android:textSize="@dimen/text_size_large"
+                tools:ignore="MissingConstraints" />
+
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_text"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:ems="10"
+            android:hint="Tìm sản phẩm, công thức"
+            android:inputType="textPersonName"
+            android:paddingLeft="20dp" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="12"
+        android:contentDescription="ads"
+        android:scaleType="fitXY"
+        android:src="@drawable/ads">
+
+    </ImageView>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="24"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            >-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgSandwich"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:drawableTop="@drawable/dicho"-->
+<!--                    android:paddingTop="20dp"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="@dimen/text_size_normal"-->
+<!--                    android:text="Sandwich" />-->
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgNuocGiaiKhat"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:text="Nước giải khát"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="@dimen/text_size_normal" />-->
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgSushi"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_normal"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Sushi" />-->
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgOnigiri"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_normal"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Onigiri" />-->
+
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            >-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgTrangMieng"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:drawableTop="@drawable/huuco"-->
+<!--                    android:paddingTop="20dp"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_normal"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Tráng Miệng" />-->
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgCom"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:drawableTop="@drawable/nhapkhau"-->
+<!--                    android:paddingTop="20dp"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_normal"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Cơm" />-->
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgOden"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:drawableTop="@drawable/dotuoi"-->
+<!--                    android:paddingTop="20dp"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_normal"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Oden" />-->
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgThucAnNhanh"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:drawableTop="@drawable/traicay"-->
+<!--                    android:paddingTop="20dp"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_normal"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Thức ăn nhanh" />-->
+
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            >-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgStreetFood"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:drawableTop="@drawable/treem"-->
+<!--                    android:paddingTop="20dp"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_large"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Street Food" />-->
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgSalad"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:drawableTop="@drawable/congthuc"-->
+<!--                    android:paddingTop="20dp"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_large"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Salad" />-->
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="98dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/btnCtgMi"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="#F1F1F1"-->
+<!--                    android:drawableTop="@drawable/video"-->
+<!--                    android:paddingTop="20dp"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="@dimen/text_size_large"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:text="Mì" />-->
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+</LinearLayout>
