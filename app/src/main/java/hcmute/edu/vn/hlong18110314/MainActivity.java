@@ -13,25 +13,29 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hcmute.edu.vn.hlong18110314.database.Database;
+import hcmute.edu.vn.hlong18110314.database.Model.CartModel;
 import hcmute.edu.vn.hlong18110314.database.Model.CategoryModel;
 import hcmute.edu.vn.hlong18110314.database.Model.ProductModel;
 import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public  static ArrayList<CartModel> arrayCart ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         deleteDatabase(Database.DATABASE_NAME);
         Database database = new Database(this, Database.DATABASE_NAME, null);
         database.userCreate("user@gmail.com", "123", "Pham Hoang Long", "user", null);
@@ -78,12 +82,36 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                 R.id.navigation_product,R.id.navigation_home,R.id.navigation_cart)
+                 R.id.navigation_category,R.id.navigation_home,R.id.navigation_cart)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        Log.e("KEY" , "GOOOOOO");
+        String value= getIntent().getStringExtra("key");
+        if (value != null){
+            Log.e("VALUE", value);
+//            Bundle bundle=new Bundle();
+//            bundle.putString("key",value);
+//            CategoryFragment ob = new CategoryFragment();
+//            ob.setArguments(bundle);
+//            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,ob).addToBackStack(null).commit();
+//            onNavigationItemSelected(navigationView.getMenu().findItem(R.id.navigation_category));
+//            navigationView.getMenu().getItem(0).setChecked(true);
+            navView.setSelectedItemId(R.id.navigation_category);
+        }
+
+        else{
+            Log.e("KEY", "NULL");
+        }
+
+        if(arrayCart != null){
+            Log.e("Cart", "NULL");
+
+        }else{
+            arrayCart = new ArrayList<>();
+        }
 
 
     }
@@ -110,13 +138,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item_sub_main_profile:
                 Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.item_sub_main_search:
-                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 
 }

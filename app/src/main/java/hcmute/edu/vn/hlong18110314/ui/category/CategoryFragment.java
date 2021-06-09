@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import hcmute.edu.vn.hlong18110314.R;
-import hcmute.edu.vn.hlong18110314.ui.productInCategory.SearchByCategoryActivity;
+import hcmute.edu.vn.hlong18110314.ui.product.ProductActivity;
 
 public class CategoryFragment extends Fragment {
     private CategoryViewModel categoryViewModel;
@@ -46,13 +46,13 @@ public class CategoryFragment extends Fragment {
         btnCtgMi = (Button) root.findViewById(R.id.btnCtgMi);
         btnCtgSandwich.setOnClickListener((view)->{
             Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(inflater.getContext(), SearchByCategoryActivity.class);
+            Intent intent = new Intent(inflater.getContext(), ProductActivity.class);
             intent.putExtra("CATEGORY_ID", 1);
             startActivity(intent);
         });
         btnCtgNuocGiaiKhat.setOnClickListener((view)->{
 //            Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(inflater.getContext(), SearchByCategoryActivity.class);
+            Intent intent = new Intent(inflater.getContext(), ProductActivity.class);
             intent.putExtra("CATEGORY_ID", 2);
             startActivity(intent);
         });

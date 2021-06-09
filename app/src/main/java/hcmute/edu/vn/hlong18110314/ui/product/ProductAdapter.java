@@ -11,21 +11,25 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
+import hcmute.edu.vn.hlong18110314.MainActivity;
 import hcmute.edu.vn.hlong18110314.R;
-import hcmute.edu.vn.hlong18110314.database.Model.Cart;
-import hcmute.edu.vn.hlong18110314.database.Model.OrderDetailModel;
+import hcmute.edu.vn.hlong18110314.database.Model.CartModel;
 import hcmute.edu.vn.hlong18110314.database.Model.ProductModel;
 
-public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameProduct;
         public TextView costProduct;
-        public Button addToCart;
+//        public Button addToCart;
 
+        public  Button btnMinus;
+        public  TextView txtValues;
+        public  Button btnPlus;
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
         public ViewHolder(View itemView) {
@@ -35,7 +39,10 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.ViewHol
 
             nameProduct = (TextView) itemView.findViewById(R.id.txtItemProductName);
             costProduct = (TextView) itemView.findViewById(R.id.txtItemProductCost);
-            addToCart = (Button) itemView.findViewById(R.id.btnItemAddToCart);
+//            addToCart = (Button) itemView.findViewById(R.id.btnItemAddToCart);
+            btnMinus = (Button) itemView.findViewById(R.id.btnMinus);
+            txtValues = (TextView) itemView.findViewById(R.id.txtValues);
+            btnPlus = (Button) itemView.findViewById(R.id.btnPlus);
         }
     }
     // Store a member variable for the contacts
@@ -53,8 +60,9 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.ViewHol
         // Inflate the custom layout
         View productView = inflater.inflate(R.layout.item_product, parent, false);
 
+
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(productView);
+        ProductAdapter.ViewHolder viewHolder = new ProductAdapter.ViewHolder(productView);
         return viewHolder;
     }
 
@@ -68,27 +76,60 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.ViewHol
         TextView nameproduct = holder.nameProduct;
         nameproduct.setText(product.getName());
         TextView costproduct = holder.costProduct;
-        costproduct.setText(product.getPrice().toString());
+        TextView txtValues = holder.txtValues;
+        //Cập nhật dữ liệu nếu có sản phẩm trong giỏ hàng
+        if(MainActivity.arrayCart.size() > 0){
+            for(int i = 0 ; i < MainActivity.arrayCart.size() ; i++){
+                if(MainActivity.arrayCart.get(i).getProductId() == product.getId()){
+                    txtValues.setText( MainActivity.arrayCart.get(i).getNumberOfProduct() + "");
+                }
+                else{
+                    txtValues.setText(0 + "");
+                }
+            }
+        }
+
+
+        // Định dạng giá
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        costproduct.setText(decimalFormat.format(product.getPrice()) + " Đ");
         holder.itemView.setOnClickListener((view)->{
             Log.i("Click",  String.valueOf(position));
         });
-        holder.addToCart.setOnClickListener((view)->{
-            List<OrderDetailModel> cart = Cart.CURRENT_CART;
-            boolean check = false;
-            for (OrderDetailModel order : cart){
-                if(order.getProductId() == product.getId()){
-                    order.setQuantity(order.getQuantity() + 1);
-                    check = true;
+        holder.btnPlus.setOnClickListener((view)->{
+
+            // Thêm vào giỏ hàng
+            int sum = Integer.parseInt(txtValues.getText().toString()) + 1;
+            Log.e("SUM" , String.valueOf(sum));
+            txtValues.setText(  sum + "");
+            boolean checkExist = false;
+            for(int i = 0 ; i < MainActivity.arrayCart.size(); i ++) {
+                if(MainActivity.arrayCart.get(i).getProductId() == product.getId()){
+                    MainActivity.arrayCart.get(i).setNumberOfProduct(MainActivity.arrayCart.get(i).getNumberOfProduct() + 1);
+                    MainActivity.arrayCart.get(i).setTotalPrice(MainActivity.arrayCart.get(i).getTotalPrice() + product.getPrice());
+                    checkExist = true;
                 }
             }
-            if(check == false){
-                OrderDetailModel detail = new OrderDetailModel(1,product.getId(),1,product.getPrice());
-                cart.add(detail);
+            if(checkExist != true){
+                //public CartModel(int productId, String name, long price, String image, int numberOfProduct, long totalPrice)
+                MainActivity.arrayCart.add(
+                        new CartModel(product.getId(), product.getName(), product.getPrice(),
+                                product.getImage(),Integer.parseInt(txtValues.getText().toString()) ,
+                                product.getPrice() ));
             }
-            Cart.CURRENT_CART = cart;
-            Toast.makeText(view.getContext(), String.valueOf(Cart.CURRENT_CART.size()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), "THÊM " + product.getName() + " VÀO GIỎ HÀNG" , Toast.LENGTH_SHORT).show();
+            for(int i = 0 ; i < MainActivity.arrayCart.size(); i ++) {
+                Log.e("CARTHERE", MainActivity.arrayCart.get(i).getName());
+                Log.e("NUMBERPRODUCT", String.valueOf(MainActivity.arrayCart.get(i).getNumberOfProduct()) );
+            }
+
+            Log.e("Size cart", String.valueOf(MainActivity.arrayCart.size()));
 
         });
+
+
+
+
 
     }
 

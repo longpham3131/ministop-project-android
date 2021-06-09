@@ -19,7 +19,6 @@ import hcmute.edu.vn.hlong18110314.database.Model.ProductModel;
 import hcmute.edu.vn.hlong18110314.database.Model.ServiceModel;
 import hcmute.edu.vn.hlong18110314.database.Model.StoreModel;
 import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
-import hcmute.edu.vn.hlong18110314.database.Model.VoucherModel;
 
 public class Database extends SQLiteOpenHelper {
 
@@ -490,113 +489,6 @@ public class Database extends SQLiteOpenHelper {
     }
 
     // Voucher Query
-    public List<VoucherModel> getAllVouchers(){
-        SQLiteDatabase dtb = getReadableDatabase();
-
-        String[] columns = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_VOUCHER_VALUE,
-                COLUMN_IMAGE
-        };
-
-        String sortOrder = COLUMN_NAME + " ASC";
-
-        List<VoucherModel> vouchersList = new ArrayList<VoucherModel>();
-
-        Cursor cursor = dtb.query(TABLE_VOUCHER, //Table to query
-                columns,    //columns to return
-                null,        //columns for the WHERE clause
-                null,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                sortOrder); //The sort order
-
-        if (cursor.moveToFirst()) {
-            do {
-                VoucherModel voucher = new VoucherModel();
-                voucher.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
-                voucher.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                voucher.setValue(cursor.getInt(cursor.getColumnIndex(COLUMN_VOUCHER_VALUE)));
-                voucher.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
-
-                vouchersList.add(voucher);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        dtb.close();
-        return vouchersList;
-    }
-    public VoucherModel getByIdVoucher(Integer id){
-        SQLiteDatabase dtb = getReadableDatabase();
-
-        String[] columns = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_VOUCHER_VALUE,
-                COLUMN_IMAGE
-        };
-
-        String selection = "id = ?";
-        String[] selectionArgs = { id.toString() };
-
-        VoucherModel voucher = new VoucherModel();
-
-        Cursor cursor = dtb.query(TABLE_VOUCHER, //Table to query
-                columns,    //columns to return
-                selection,        //columns for the WHERE clause
-                selectionArgs,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                null); //The sort order
-
-        if (cursor.moveToFirst()) {
-            do {
-                voucher.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
-                voucher.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                voucher.setValue(cursor.getInt(cursor.getColumnIndex(COLUMN_VOUCHER_VALUE)));
-                voucher.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        dtb.close();
-        return voucher;
-    }
-    public VoucherModel createVoucher(VoucherModel newVoucher){
-        SQLiteDatabase dtb = getWritableDatabase();
-
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME,newVoucher.getName());
-        cv.put(COLUMN_VOUCHER_VALUE, newVoucher.getValue());
-        cv.put(COLUMN_IMAGE, newVoucher.getImage());
-
-        Integer id = Math.toIntExact(dtb.insert(TABLE_VOUCHER, null, cv));
-        dtb.close();
-        return getByIdVoucher(id);
-    }
-    public void updateVoucher(VoucherModel voucher) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, voucher.getName());
-        values.put(COLUMN_VOUCHER_VALUE, voucher.getValue());
-        values.put(COLUMN_IMAGE, voucher.getImage());
-
-        // updating row
-        db.update(TABLE_VOUCHER, values, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(voucher.getId())});
-
-        db.close();
-    }
-    public void deleteVoucher(VoucherModel voucher) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        // delete record by id
-        db.delete(TABLE_VOUCHER, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(voucher.getId())});
-        db.close();
-    }
 
     // Service Query
     public List<ServiceModel> getAllServices(){
