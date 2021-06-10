@@ -66,7 +66,7 @@ public class Database extends SQLiteOpenHelper {
     // Notification
     private static final String TABLE_NOTIFICATION = "notification";
     // Order
-    private static final String TABLE_ORDER = "order";
+    private static final String TABLE_ORDER = "orderProduct";
     // OrderDetail
     private static final String TABLE_ORDER_DETAIL = "orderdetail";
 
@@ -909,7 +909,6 @@ public class Database extends SQLiteOpenHelper {
         cv.put(COLUMN_ORDER_TOTAL, newOrder.getTotal());
         cv.put(COLUMN_ORDER_USER_ID, newOrder.getUserID());
         cv.put(COLUMN_ORDER_STATUS, newOrder.getStatus());
-
         Integer id = Math.toIntExact(dtb.insert(TABLE_ORDER, null, cv));
         dtb.close();
         return getByIdOrder(id);
@@ -1110,9 +1109,9 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS service(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200),description NVACHAR(200),image BLOB)");
         db.execSQL("CREATE TABLE IF NOT EXISTS store(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200), location NVACHAR(200))");
         db.execSQL("CREATE TABLE IF NOT EXISTS notification(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200), description NVACHAR(200), startDate NVACHAR(200), endDate NVACHAR(200))");
-        db.execSQL("CREATE TABLE IF NOT EXISTS [order](id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200),dateCreated NVARCHAR, total INTEGER, userId INTEGER, status NVARCHAR(100))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS orderProduct(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200),dateCreated NVARCHAR, total INTEGER, userId INTEGER, status NVARCHAR(100))");
         db.execSQL("CREATE TABLE IF NOT EXISTS orderdetail(id INTEGER PRIMARY KEY AUTOINCREMENT,orderId INTEGER, productId INTEGER, quantity INTEGER, total INTEGER," +
-                " FOREIGN KEY (orderId) REFERENCES [order](id) ON DELETE CASCADE," +
+                " FOREIGN KEY (orderId) REFERENCES orderProduct(id) ON DELETE CASCADE," +
                 "FOREIGN KEY (productId) REFERENCES product(id) ON DELETE CASCADE)");
     }
 
@@ -1124,4 +1123,5 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onOpen(SQLiteDatabase db){
     }
+
 }

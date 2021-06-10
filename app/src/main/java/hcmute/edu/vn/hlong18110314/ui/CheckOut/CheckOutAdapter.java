@@ -74,7 +74,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHo
             for(int i = 0 ; i < MainActivity.arrayCart.size(); i ++) {
                 if(MainActivity.arrayCart.get(i).getProductId() == cartModel.getProductId()){
                     MainActivity.arrayCart.get(i).setNumberOfProduct(MainActivity.arrayCart.get(i).getNumberOfProduct() + 1);
-                    MainActivity.arrayCart.get(i).setTotalPrice(MainActivity.arrayCart.get(i).getTotalPrice() + cartModel.getPrice());
+                    MainActivity.arrayCart.get(i).setTotalPrice((int) (MainActivity.arrayCart.get(i).getTotalPrice() + cartModel.getPrice()));
                     int sum = Integer.parseInt(holder.numberOfProduct.getText().toString())  + 1;
                     holder.numberOfProduct.setText( sum + "");
                     checkOut.calculatorTotalPrice();
@@ -87,7 +87,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHo
                 if(MainActivity.arrayCart.get(i).getProductId() == cartModel.getProductId()){
                     if(MainActivity.arrayCart.get(i).getNumberOfProduct() > 1){
                         MainActivity.arrayCart.get(i).setNumberOfProduct(MainActivity.arrayCart.get(i).getNumberOfProduct() - 1);
-                        MainActivity.arrayCart.get(i).setTotalPrice(MainActivity.arrayCart.get(i).getTotalPrice() - cartModel.getPrice());
+                        MainActivity.arrayCart.get(i).setTotalPrice((int) (MainActivity.arrayCart.get(i).getTotalPrice() - cartModel.getPrice()));
                         int sum = Integer.parseInt(holder.numberOfProduct.getText().toString())  - 1;
                         holder.numberOfProduct.setText(sum + "");
                         checkOut.calculatorTotalPrice();
@@ -101,6 +101,9 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHo
             public void onClick(View v) {
                 MainActivity.arrayCart.remove(position);
                 checkOut.calculatorTotalPrice();
+                if(MainActivity.arrayCart.size() ==0){
+                    CheckOutActivity.enableButton(false);
+                }
                 notifyDataSetChanged();
             }
         });

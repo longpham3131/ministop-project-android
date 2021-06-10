@@ -1,7 +1,11 @@
 package hcmute.edu.vn.hlong18110314.ui.CheckOut;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,23 +25,81 @@ import hcmute.edu.vn.hlong18110314.database.Database;
 import hcmute.edu.vn.hlong18110314.database.Model.Cart;
 import hcmute.edu.vn.hlong18110314.database.Model.CartModel;
 import hcmute.edu.vn.hlong18110314.database.Model.OrderDetailModel;
+import hcmute.edu.vn.hlong18110314.database.Model.OrderModel;
+import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
 import hcmute.edu.vn.hlong18110314.ui.cart.CartAdapter;
 import hcmute.edu.vn.hlong18110314.ui.cart.CartViewModel;
+import hcmute.edu.vn.hlong18110314.ui.product.ProductActivity;
 
 public class CheckOutActivity extends AppCompatActivity {
     ArrayList<CartModel> lCartModel;
     RecyclerView rvCart;
+    Database database;
     static   TextView totalPriceCart;
+    static Button btnCheckOut;
     private CartViewModel mViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_out);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Giỏ hàng");
+        database = new Database(this, Database.DATABASE_NAME, null);
         loadData();
         calculatorTotalPrice();
+        onClickCheckOut();
+
 
     }
 
+    private  void onClickCheckOut() {
+        btnCheckOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(UserModel.CURRENT_USER != null){
+                    Log.e("USER", UserModel.CURRENT_USER.getFullName() );
+                    //Lấy ngày hiện tại của khu vực
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                    LocalDateTime now = LocalDateTime.now();
+                    //Gán dữ liệu vào newOrder
+                    OrderModel newOrder = new OrderModel();
+                    newOrder.setName(UserModel.CURRENT_USER.getFullName());
+                    newOrder.setDateCreated(dtf.format(now));
+                    newOrder.setUserID(UserModel.CURRENT_USER.getId());
+                    int totalPrice = 0;
+                    for(int i = 0 ; i < MainActivity.arrayCart.size() ; i++){
+                        totalPrice +=  MainActivity.arrayCart.get(i).getTotalPrice();
+                    }
+                    newOrder.setTotal( totalPrice);
+                    newOrder.setStatus("Init");
+                    //Thêm order
+                    OrderModel newOrderId = database.createOrder(newOrder);
+                    //Thêm sản phẩm vào order
+                    for(int i = 0 ; i < MainActivity.arrayCart.size() ; i++){
+                        OrderDetailModel newItemOrder = new OrderDetailModel();
+                        newItemOrder.setOrderId(newOrderId.getId());
+                        newItemOrder.setProductId(MainActivity.arrayCart.get(i).productId);
+                        newItemOrder.setQuantity(MainActivity.arrayCart.get(i).numberOfProduct);
+                        newItemOrder.setTotal(MainActivity.arrayCart.get(i).totalPrice);
+                        database.createOrderDetail(newItemOrder);
+                        Log.e("ODER NEW " + i , "SUCCESS");
+                    }
+                    // xóa giỏ hàng
+                    for(int i = 0 ; i < MainActivity.arrayCart.size() ; i++) {
+                        MainActivity.arrayCart.remove(i);
+                    }
+                }
+                else{
+                    Log.e("USER", "NULL" );
+                }
+            }
+        });
+
+    }
+    public  static  void enableButton(Boolean isEnable){
+        btnCheckOut.setEnabled(isEnable);
+    }
     public static void calculatorTotalPrice() {
         int totalPrice = 0;
         for(int i = 0 ; i < MainActivity.arrayCart.size() ; i++){
@@ -48,10 +112,22 @@ public class CheckOutActivity extends AppCompatActivity {
 
     public void loadData() {
         totalPriceCart = (TextView) findViewById(R.id.text_totalPrice);
+        btnCheckOut = (Button) findViewById(R.id.btnCheckOut);
         rvCart = (RecyclerView) findViewById(R.id.rvCart);
         lCartModel = MainActivity.arrayCart;
         CheckOutAdapter checkOutAdapter = new CheckOutAdapter(lCartModel);
         rvCart.setAdapter(checkOutAdapter);
         rvCart.setLayoutManager(new LinearLayoutManager(this));
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+//            result = "OK";
+//            Intent intent = new Intent(ProductActivity.this, MainActivity.class);
+//            intent.putExtra("key", result);
+//            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(menuItem);
     }
 }

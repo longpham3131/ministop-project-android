@@ -8,40 +8,41 @@
     tools:context=".RegisterActivity">
 
 
-    <Button
-        android:id="@+id/btnTakePic"
-        android:layout_width="224dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/themeButton"
-        android:text="Take a picture"
-        app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewAvatar" />
+<!--    <Button-->
+<!--        android:id="@+id/btnTakePic"-->
+<!--        android:layout_width="224dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:backgroundTint="@color/themeButton"-->
+<!--        android:text="Take a picture"-->
+<!--        app:cornerRadius="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imgViewAvatar" />-->
 
-    <ImageView
-        android:id="@+id/imgViewAvatar"
-        android:layout_width="242dp"
-        android:layout_height="209dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtRegister"
-        tools:srcCompat="@tools:sample/avatars" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imgViewAvatar"-->
+<!--        android:layout_width="242dp"-->
+<!--        android:layout_height="209dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txtRegister"-->
+<!--        tools:srcCompat="@tools:sample/avatars" />-->
 
     <TextView
         android:id="@+id/txtRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Create new Account"
-        android:textSize="25dp"
+        android:text="Đăng ký tài khoản"
+        android:textSize="35dp"
         android:textStyle="bold"
+        android:paddingBottom="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.848"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,25 +51,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Your Email"
+        android:text="Email"
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTakePic" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Password"
-        android:textSize="17dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmailRes" />
-
+        app:layout_constraintTop_toBottomOf="@+id/txtRegister" />
     <EditText
         android:id="@+id/txtEmailRes"
         android:layout_width="338dp"
@@ -77,13 +65,24 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:background="@drawable/radius_login"
-        android:drawableEnd="@drawable/ic_baseline_check_24"
         android:paddingEnd="5dp"
         android:paddingLeft="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Mật khẩu"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmailRes" />
 
     <EditText
         android:id="@+id/txtPasswordRes"
@@ -95,33 +94,59 @@
         android:background="@drawable/radius_login"
         android:paddingEnd="5dp"
         android:paddingLeft="5dp"
-        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.621"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <CheckBox
-        android:id="@+id/chbAgreePolicy"
-        android:layout_width="350dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:text="I agree to the Term &amp; Conditions and Privacy Polycy"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Tên hiển thị"
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPasswordRes" />
+
+    <EditText
+        android:id="@+id/txtFullNameRes"
+        android:layout_width="337dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="text"
+        android:background="@drawable/radius_login"
+        android:paddingEnd="5dp"
+        android:paddingLeft="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="241dp"
         android:layout_height="55dp"
-        android:layout_marginTop="8dp"
-        android:text="Create Account"
+        android:layout_marginTop="50dp"
+        android:text="Đăng ký"
         android:backgroundTint="@color/themeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chbAgreePolicy" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFullNameRes" />
+    <Button
+        android:id="@+id/btnBackLogin"
+        android:layout_width="241dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:text="Quay về đăng nhập"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

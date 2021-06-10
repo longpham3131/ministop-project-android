@@ -3,12 +3,12 @@ package hcmute.edu.vn.hlong18110314.database.Model;
 public class CartModel {
     public int productId;
     public  String name;
-    public  long price;
+    public  int price;
     public  byte[] image;
     public  int numberOfProduct;
-    public  long totalPrice;
+    public  int totalPrice;
 
-    public CartModel(int productId, String name, long price, byte[] image, int numberOfProduct, long totalPrice) {
+    public CartModel(int productId, String name, int price, byte[] image, int numberOfProduct, int totalPrice) {
         this.productId = productId;
         this.name = name;
         this.price = price;
@@ -37,7 +37,7 @@ public class CartModel {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -61,7 +61,7 @@ public class CartModel {
         return totalPrice;
     }
 
-    public void setTotalPrice(long totalPrice) {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 }

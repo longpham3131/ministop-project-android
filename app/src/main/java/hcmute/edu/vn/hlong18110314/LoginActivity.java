@@ -11,7 +11,8 @@ import hcmute.edu.vn.hlong18110314.database.Database;
 import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
 
 public class LoginActivity extends AppCompatActivity {
-    public Button loginBtn;
+    public Button btnLogin;
+    public  Button btnRegister;
     public EditText emailText;
     public EditText passwordText;
     @Override
@@ -22,8 +23,11 @@ public class LoginActivity extends AppCompatActivity {
         emailText = (EditText) findViewById(R.id.txtEmailLog);
         passwordText = (EditText) findViewById(R.id.txtPasswordLog);
 
-        loginBtn = (Button) findViewById(R.id.btnLogin);
-        loginBtn.setOnClickListener(v -> {
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+
+
+        btnLogin.setOnClickListener(v -> {
             String email = emailText.getText().toString();
             String password = passwordText.getText().toString();
 
@@ -40,6 +44,12 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
+
+        });
+
+        btnRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
 
         });
 

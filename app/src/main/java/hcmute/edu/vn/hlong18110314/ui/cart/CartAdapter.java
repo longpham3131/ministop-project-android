@@ -76,7 +76,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         TextView costproduct = holder.costProduct;
         costproduct.setText(product.getPrice().toString());
         TextView quantity = holder.quantity;
-        quantity.setText(detail.getQuantity().toString());
+//        quantity.setText(detail.getQuantity().toString());
 //        holder.itemView.setOnClickListener((view)->{
 //            Log.i("Click",  String.valueOf(position));
 //        });

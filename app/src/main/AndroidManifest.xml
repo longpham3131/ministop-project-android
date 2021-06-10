@@ -21,15 +21,23 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity">
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".ui.product.ProductActivity" />
         <activity android:name=".SettingActivity" />
@@ -37,16 +45,7 @@
         <activity android:name=".ForgetPassword_CheckEmail" />
         <activity android:name=".ForgetPassword_CreateNewPassword" />
         <activity android:name=".ForgetPasswordActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
         <activity android:name=".ui.CheckOut.CheckOutActivity"/>
     </application>
 

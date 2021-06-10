@@ -1,57 +1,57 @@
 package hcmute.edu.vn.hlong18110314.database.Model;
 
 public class OrderDetailModel {
-    private Integer id;
-    private Integer orderId;
-    private Integer productId;
-    private Integer quantity;
-    private Integer total;
+    private int id;
+    private int orderId;
+    private int productId;
+    private int quantity;
+    private int total;
 
     public OrderDetailModel(){}
-    public OrderDetailModel(Integer orderId, Integer productId,Integer quantity,Integer total){
+    public OrderDetailModel(int orderId, int productId,int quantity,int total){
         this.orderId = orderId;
         this.productId = productId;
         this.quantity = quantity;
         this.total = total;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
-    public Integer getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 }

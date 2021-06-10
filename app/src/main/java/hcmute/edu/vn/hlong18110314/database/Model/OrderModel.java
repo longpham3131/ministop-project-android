@@ -44,8 +44,8 @@ public class OrderModel {
         return total;
     }
 
-    public void setTotal(Integer quantity) {
-        this.total = quantity;
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 
     public Integer getUserID() {
