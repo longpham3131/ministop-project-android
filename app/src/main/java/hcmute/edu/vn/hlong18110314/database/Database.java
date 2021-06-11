@@ -12,12 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hcmute.edu.vn.hlong18110314.database.Model.CategoryModel;
-import hcmute.edu.vn.hlong18110314.database.Model.NotificationModel;
 import hcmute.edu.vn.hlong18110314.database.Model.OrderDetailModel;
 import hcmute.edu.vn.hlong18110314.database.Model.OrderModel;
 import hcmute.edu.vn.hlong18110314.database.Model.ProductModel;
-import hcmute.edu.vn.hlong18110314.database.Model.ServiceModel;
-import hcmute.edu.vn.hlong18110314.database.Model.StoreModel;
 import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
 
 public class Database extends SQLiteOpenHelper {
@@ -545,7 +542,7 @@ public class Database extends SQLiteOpenHelper {
                 COLUMN_ORDER_STATUS
         };
 
-        String sortOrder = COLUMN_ID + " DESC";
+        String sortOrder = COLUMN_ID + " ASC";
         String selection = "userId = ?";
         String[] selectionArgs = { userId.toString() };
 

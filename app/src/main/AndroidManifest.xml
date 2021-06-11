@@ -40,11 +40,6 @@
 <!--            </intent-filter>-->
         </activity>
         <activity android:name=".ui.product.ProductActivity" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".NotifycationActivity" />
-        <activity android:name=".ForgetPassword_CheckEmail" />
-        <activity android:name=".ForgetPassword_CreateNewPassword" />
-        <activity android:name=".ForgetPasswordActivity" />
 
         <activity android:name=".ui.CheckOut.CheckOutActivity"/>
         <activity android:name=".ui.bill.BillActivity" />

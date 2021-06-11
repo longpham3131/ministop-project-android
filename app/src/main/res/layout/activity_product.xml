@@ -14,7 +14,7 @@
         android:id="@+id/dataProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:paddingHorizontal="10dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +28,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_alignParentBottom="true">
 
         <TextView

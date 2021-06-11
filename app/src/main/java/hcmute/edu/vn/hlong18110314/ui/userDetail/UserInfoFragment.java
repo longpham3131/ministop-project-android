@@ -1,4 +1,4 @@
-package hcmute.edu.vn.hlong18110314.ui.cart;
+package hcmute.edu.vn.hlong18110314.ui.userDetail;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -23,18 +23,14 @@ import android.widget.Toast;
 import java.util.List;
 
 import hcmute.edu.vn.hlong18110314.LoginActivity;
-import hcmute.edu.vn.hlong18110314.MainActivity;
 import hcmute.edu.vn.hlong18110314.R;
 import hcmute.edu.vn.hlong18110314.database.Database;
-import hcmute.edu.vn.hlong18110314.database.Model.Cart;
-import hcmute.edu.vn.hlong18110314.database.Model.OrderDetailModel;
 import hcmute.edu.vn.hlong18110314.database.Model.OrderModel;
 import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
-import hcmute.edu.vn.hlong18110314.ui.bill.BillActivity;
 
-public class CartFragment extends Fragment {
+public class UserInfoFragment extends Fragment {
 
-    public CartViewModel mViewModel;
+    public UserInfoViewModel mViewModel;
     public TextView txtEmailUpdate;
     public EditText txtPasswordUpdate;
     public EditText txtDisplayNameUpdate;
@@ -43,16 +39,16 @@ public class CartFragment extends Fragment {
     public  RecyclerView rvListOrder;
     public Database database;
 
-    public static CartFragment newInstance() {
-        return new CartFragment();
+    public static UserInfoFragment newInstance() {
+        return new UserInfoFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,
                               Bundle savedInstanceState) {
         mViewModel =
-                new ViewModelProvider(this).get(CartViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_cart, container, false);
+                new ViewModelProvider(this).get(UserInfoViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_userinfo, container, false);
         database = new Database(getContext(), Database.DATABASE_NAME, null);
 
         txtEmailUpdate = (TextView) root.findViewById(R.id.txtEmailUpdate);
@@ -79,17 +75,19 @@ public class CartFragment extends Fragment {
         rvListOrder = (RecyclerView) root.findViewById(R.id.rvListOrder);
         List<OrderModel> listOrder = database.getAllOrdersByUserId(UserModel.CURRENT_USER.getId());
         Log.e("LIST ORDER", String.valueOf(listOrder.size()));
-        CartAdapter adapter = new CartAdapter(listOrder);
+        UserInfoAdapter adapter = new UserInfoAdapter(listOrder);
         rvListOrder.setAdapter(adapter);
         rvListOrder.setLayoutManager(new LinearLayoutManager(getContext()));
         int curSize = adapter.getItemCount();
         return root;
     }
-
+//    public static void IntentToActivity( int order_id){
+//        Intent intent = new Intent( )
+//    }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(UserInfoViewModel.class);
         // TODO: Use the ViewModel
     }
 

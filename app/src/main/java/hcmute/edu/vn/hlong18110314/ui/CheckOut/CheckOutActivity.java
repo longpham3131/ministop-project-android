@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,22 +16,16 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 import hcmute.edu.vn.hlong18110314.MainActivity;
 import hcmute.edu.vn.hlong18110314.R;
 import hcmute.edu.vn.hlong18110314.database.Database;
-import hcmute.edu.vn.hlong18110314.database.Model.Cart;
 import hcmute.edu.vn.hlong18110314.database.Model.CartModel;
 import hcmute.edu.vn.hlong18110314.database.Model.OrderDetailModel;
 import hcmute.edu.vn.hlong18110314.database.Model.OrderModel;
-import hcmute.edu.vn.hlong18110314.database.Model.ProductModel;
 import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
 import hcmute.edu.vn.hlong18110314.ui.bill.BillActivity;
-import hcmute.edu.vn.hlong18110314.ui.cart.CartAdapter;
-import hcmute.edu.vn.hlong18110314.ui.cart.CartViewModel;
-import hcmute.edu.vn.hlong18110314.ui.product.ProductActivity;
-import hcmute.edu.vn.hlong18110314.ui.product.ProductAdapter;
+import hcmute.edu.vn.hlong18110314.ui.userDetail.UserInfoViewModel;
 
 public class CheckOutActivity extends AppCompatActivity {
     ArrayList<CartModel> lCartModel;
@@ -40,7 +33,7 @@ public class CheckOutActivity extends AppCompatActivity {
     Database database;
     static   TextView totalPriceCart;
     static Button btnCheckOut;
-    private CartViewModel mViewModel;
+    private UserInfoViewModel mViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

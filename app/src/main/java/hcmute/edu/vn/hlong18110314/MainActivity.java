@@ -34,7 +34,6 @@ import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
 public class MainActivity extends AppCompatActivity {
     Database database;
     public  static ArrayList<CartModel> arrayCart ;
-    public static  List<OrderModel> lOrderModal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         database = new Database(this, Database.DATABASE_NAME, null);
-
+//        createDataBase();
         if(database.getAllProducts().size() == 0){
             Log.e("PRODUCT TABLE ", "NULL");
             createDataBase();
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                 R.id.navigation_category,R.id.navigation_home,R.id.navigation_cart)
+                 R.id.navigation_category,R.id.navigation_home,R.id.navigation_userinfo)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

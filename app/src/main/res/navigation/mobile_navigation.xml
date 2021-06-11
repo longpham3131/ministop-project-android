@@ -10,21 +10,15 @@
         android:name="hcmute.edu.vn.hlong18110314.ui.category.CategoryFragment"
         android:label="Danh mục"
         tools:layout="@layout/fragment_category" />
-
     <fragment
         android:id="@+id/navigation_home"
         android:name="hcmute.edu.vn.hlong18110314.ui.home.HomeFragment"
         android:label="Ministop"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/navigation_cart"
-        android:name="hcmute.edu.vn.hlong18110314.ui.cart.CartFragment"
-        android:label="Giỏ hàng"
-        tools:layout="@layout/fragment_cart" />
-<!--  <fragment-->
-<!--        android:id="@+id/navigation_product"-->
-<!--        android:name="hcmute.edu.vn.hlong18110314.ui.product.ProductFragment"-->
-<!--        android:label="Sản phẩm"-->
-<!--        tools:layout="@layout/fragment_product" />-->
+        android:id="@+id/navigation_userinfo"
+        android:name="hcmute.edu.vn.hlong18110314.ui.userDetail.UserInfoFragment"
+        android:label="Tài khoản"
+        tools:layout="@layout/fragment_userinfo" />
 
 </navigation>

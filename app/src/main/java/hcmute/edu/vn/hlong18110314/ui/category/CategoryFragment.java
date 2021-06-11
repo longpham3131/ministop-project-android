@@ -41,9 +41,6 @@ public class CategoryFragment extends Fragment {
         btnCtgCom = (Button) root.findViewById(R.id.btnCtgCom);
         btnCtgOden = (Button) root.findViewById(R.id.btnCtgOden);
         btnCtgThucAnNhanh = (Button) root.findViewById(R.id.btnCtgThucAnNhanh);
-        btnCtgStreetFood = (Button) root.findViewById(R.id.btnCtgStreetFood);
-        btnCtgSalad = (Button) root.findViewById(R.id.btnCtgSalad);
-        btnCtgMi = (Button) root.findViewById(R.id.btnCtgMi);
         btnCtgSandwich.setOnClickListener((view)->{
             Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(inflater.getContext(), ProductActivity.class);
@@ -74,15 +71,7 @@ public class CategoryFragment extends Fragment {
         btnCtgThucAnNhanh.setOnClickListener((view)->{
 //            Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
         });
-        btnCtgStreetFood.setOnClickListener((view)->{
-//            Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
-        });
-        btnCtgSalad.setOnClickListener((view)->{
-//            Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
-        });
-        btnCtgMi.setOnClickListener((view)->{
-//            Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
-        });
+
 
         return root;
     }
