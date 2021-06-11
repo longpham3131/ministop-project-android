@@ -11,6 +11,6 @@
         android:title="Ministop" />
     <item
         android:id="@+id/navigation_cart"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"
-        android:title="Giỏ hàng" />
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Tài khoản" />
 </menu>

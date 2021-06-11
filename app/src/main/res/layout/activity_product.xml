@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Giỏ Hàng :"
+            android:text="Giỏ Hàng:"
             android:textSize="25dp"
             android:textColor="@color/white"
             />
@@ -55,6 +55,6 @@
             android:layout_width="0dip"
             android:layout_weight="3"
             android:layout_height="wrap_content"
-            android:text="Thanh toán"/>
+            android:text="Giỏ hàng"/>
     </LinearLayout>
 </RelativeLayout>

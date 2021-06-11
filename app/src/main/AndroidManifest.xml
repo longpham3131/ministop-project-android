@@ -47,6 +47,7 @@
         <activity android:name=".ForgetPasswordActivity" />
 
         <activity android:name=".ui.CheckOut.CheckOutActivity"/>
+        <activity android:name=".ui.bill.BillActivity" />
     </application>
 
 </manifest>

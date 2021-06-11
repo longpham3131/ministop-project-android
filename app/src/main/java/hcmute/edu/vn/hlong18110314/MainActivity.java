@@ -1,6 +1,7 @@
 package hcmute.edu.vn.hlong18110314;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -21,23 +22,68 @@ import androidx.navigation.ui.NavigationUI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 import hcmute.edu.vn.hlong18110314.database.Database;
 import hcmute.edu.vn.hlong18110314.database.Model.CartModel;
 import hcmute.edu.vn.hlong18110314.database.Model.CategoryModel;
+import hcmute.edu.vn.hlong18110314.database.Model.OrderModel;
 import hcmute.edu.vn.hlong18110314.database.Model.ProductModel;
 import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
 
 public class MainActivity extends AppCompatActivity {
-
+    Database database;
     public  static ArrayList<CartModel> arrayCart ;
+    public static  List<OrderModel> lOrderModal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(UserModel.CURRENT_USER == null){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+        database = new Database(this, Database.DATABASE_NAME, null);
+
+        if(database.getAllProducts().size() == 0){
+            Log.e("PRODUCT TABLE ", "NULL");
+            createDataBase();
+
+        }
+
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                 R.id.navigation_category,R.id.navigation_home,R.id.navigation_cart)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
+
+
+        String value= getIntent().getStringExtra("key");
+        if (value != null){
+            navView.setSelectedItemId(R.id.navigation_category);
+        }
+        else{
+            Log.e("KEY", "NULL");
+        }
+        //arrayCart
+        if(arrayCart != null){
+            Log.e("Cart", String.valueOf(arrayCart.size()));
+
+        }else{
+            arrayCart = new ArrayList<>();
+        }
+
+
+    }
+
+    private void createDataBase() {
         deleteDatabase(Database.DATABASE_NAME);
-        Database database = new Database(this, Database.DATABASE_NAME, null);
         database.userCreate("user@gmail.com", "123", "Pham Hoang Long", "user", null);
         database.createCategory(new CategoryModel("SANDWICH",null));//1
         database.createCategory(new CategoryModel("NƯỚC GIẢI KHÁT",null));//2
@@ -72,49 +118,8 @@ public class MainActivity extends AppCompatActivity {
         database.createProduct(new ProductModel("Temaki onigiri bò sốt phomai",null,2,"Temaki onigiri bò sốt phomai",16000));
         database.createProduct(new ProductModel("Temaki Onigiri Cá Ngừ Mayo",null,2,"Temaki Onigiri từ lâu đã là món ăn quen thuộc được mọi người yêu thích. Và hôm nay, đến với Ministop bạn sẽ gặp một Temaki Onigiri hoàn toàn mới, sự lột xác hoàn hảo và toàn diện của chúng sẽ mang lại luồng gió mới làm hài lòng hơn khẩu vị của thực khách khó tính.",12000));
         database.createProduct(new ProductModel("SANDWICH GÀ NƯỚNG SẢ",null,2,"",25000));
-
-
-
-
-        List<UserModel> users = database.getAllUser();
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                 R.id.navigation_category,R.id.navigation_home,R.id.navigation_cart)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
-
-        Log.e("KEY" , "GOOOOOO");
-        String value= getIntent().getStringExtra("key");
-        if (value != null){
-            Log.e("VALUE", value);
-//            Bundle bundle=new Bundle();
-//            bundle.putString("key",value);
-//            CategoryFragment ob = new CategoryFragment();
-//            ob.setArguments(bundle);
-//            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,ob).addToBackStack(null).commit();
-//            onNavigationItemSelected(navigationView.getMenu().findItem(R.id.navigation_category));
-//            navigationView.getMenu().getItem(0).setChecked(true);
-            navView.setSelectedItemId(R.id.navigation_category);
-        }
-
-        else{
-            Log.e("KEY", "NULL");
-        }
-
-        if(arrayCart != null){
-            Log.e("Cart", "NULL");
-
-        }else{
-            arrayCart = new ArrayList<>();
-        }
-
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

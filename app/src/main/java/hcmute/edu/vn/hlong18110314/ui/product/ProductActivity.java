@@ -97,13 +97,10 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        Integer category_id = getIntent().getIntExtra("CATEGORY_ID",1);
-        Database database = new Database(this, Database.DATABASE_NAME, null);
-        List<ProductModel> dbproducts = database.getProductByCategoryId(category_id);
-        lSearchproducts = dbproducts;
-        ProductAdapter adapter = new ProductAdapter(lSearchproducts);
-        rvProducts.setAdapter(adapter);
-        rvProducts.setLayoutManager(new LinearLayoutManager(this));
+        loadData();
+        calculatorTotalPrice();
+        if(MainActivity.arrayCart.size() == 0){
+            enableButton(false);
+        }
     }
 }

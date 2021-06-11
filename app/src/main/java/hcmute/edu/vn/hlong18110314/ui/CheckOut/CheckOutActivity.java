@@ -26,10 +26,13 @@ import hcmute.edu.vn.hlong18110314.database.Model.Cart;
 import hcmute.edu.vn.hlong18110314.database.Model.CartModel;
 import hcmute.edu.vn.hlong18110314.database.Model.OrderDetailModel;
 import hcmute.edu.vn.hlong18110314.database.Model.OrderModel;
+import hcmute.edu.vn.hlong18110314.database.Model.ProductModel;
 import hcmute.edu.vn.hlong18110314.database.Model.UserModel;
+import hcmute.edu.vn.hlong18110314.ui.bill.BillActivity;
 import hcmute.edu.vn.hlong18110314.ui.cart.CartAdapter;
 import hcmute.edu.vn.hlong18110314.ui.cart.CartViewModel;
 import hcmute.edu.vn.hlong18110314.ui.product.ProductActivity;
+import hcmute.edu.vn.hlong18110314.ui.product.ProductAdapter;
 
 public class CheckOutActivity extends AppCompatActivity {
     ArrayList<CartModel> lCartModel;
@@ -49,7 +52,7 @@ public class CheckOutActivity extends AppCompatActivity {
         loadData();
         calculatorTotalPrice();
         onClickCheckOut();
-
+        Log.e("ON RESUME", "RESUME");
 
     }
 
@@ -60,7 +63,7 @@ public class CheckOutActivity extends AppCompatActivity {
                 if(UserModel.CURRENT_USER != null){
                     Log.e("USER", UserModel.CURRENT_USER.getFullName() );
                     //Lấy ngày hiện tại của khu vực
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
                     LocalDateTime now = LocalDateTime.now();
                     //Gán dữ liệu vào newOrder
                     OrderModel newOrder = new OrderModel();
@@ -72,7 +75,7 @@ public class CheckOutActivity extends AppCompatActivity {
                         totalPrice +=  MainActivity.arrayCart.get(i).getTotalPrice();
                     }
                     newOrder.setTotal( totalPrice);
-                    newOrder.setStatus("Init");
+                    newOrder.setStatus("Đã thanh toán");
                     //Thêm order
                     OrderModel newOrderId = database.createOrder(newOrder);
                     //Thêm sản phẩm vào order
@@ -86,9 +89,14 @@ public class CheckOutActivity extends AppCompatActivity {
                         Log.e("ODER NEW " + i , "SUCCESS");
                     }
                     // xóa giỏ hàng
-                    for(int i = 0 ; i < MainActivity.arrayCart.size() ; i++) {
-                        MainActivity.arrayCart.remove(i);
-                    }
+                    MainActivity.arrayCart.removeAll(MainActivity.arrayCart);
+                    Log.e("Cart HERE", String.valueOf(MainActivity.arrayCart.size()));
+                    // Chuyển trang BillActivity
+                    int order_id = newOrderId.getId();
+                    Intent intent = new Intent(CheckOutActivity.this, BillActivity.class);
+                    intent.putExtra("orderID", order_id);
+                    startActivity(intent);
+
                 }
                 else{
                     Log.e("USER", "NULL" );
@@ -122,12 +130,19 @@ public class CheckOutActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == android.R.id.home) {
-//            result = "OK";
-//            Intent intent = new Intent(ProductActivity.this, MainActivity.class);
-//            intent.putExtra("key", result);
-//            startActivity(intent);
             finish();
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+        calculatorTotalPrice();
+        Log.e("ON RESUME", "RESUME");
+        Log.e("ON CART", String.valueOf(MainActivity.arrayCart.size()));
+        if(MainActivity.arrayCart.size() == 0){
+            enableButton(false);
+        }
     }
 }

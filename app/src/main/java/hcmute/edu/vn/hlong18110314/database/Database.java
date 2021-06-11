@@ -442,7 +442,6 @@ public class Database extends SQLiteOpenHelper {
                 product.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
                 product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_CATEGORY_ID)));
                 product.setPrice(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_PRICE)));
-
             } while (cursor.moveToNext());
         }
 
@@ -488,335 +487,9 @@ public class Database extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Voucher Query
-
-    // Service Query
-    public List<ServiceModel> getAllServices(){
-        SQLiteDatabase dtb = getReadableDatabase();
-
-        String[] columns = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_PRODUCT_DESCRIPTION,
-                COLUMN_IMAGE
-        };
-
-        String sortOrder = COLUMN_NAME + " ASC";
-
-        List<ServiceModel> servicesList = new ArrayList<ServiceModel>();
-
-        Cursor cursor = dtb.query(TABLE_SERVICE, //Table to query
-                columns,    //columns to return
-                null,        //columns for the WHERE clause
-                null,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                sortOrder); //The sort order
-
-        if (cursor.moveToFirst()) {
-            do {
-                ServiceModel service = new ServiceModel();
-                service.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
-                service.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                service.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_DESCRIPTION)));
-                service.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
-
-                servicesList.add(service);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        dtb.close();
-        return servicesList;
-    }
-    public ServiceModel getByIdService(Integer id){
-        SQLiteDatabase dtb = getReadableDatabase();
-
-        String[] columns = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_PRODUCT_DESCRIPTION,
-                COLUMN_IMAGE
-        };
-
-        String selection = "id = ?";
-        String[] selectionArgs = { id.toString() };
-
-        ServiceModel service = new ServiceModel();
-
-        Cursor cursor = dtb.query(TABLE_SERVICE, //Table to query
-                columns,    //columns to return
-                selection,        //columns for the WHERE clause
-                selectionArgs,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                null); //The sort order
-
-        if (cursor.moveToFirst()) {
-            do {
-                service.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
-                service.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                service.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_DESCRIPTION)));
-                service.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        dtb.close();
-        return service;
-    }
-    public ServiceModel createService(ServiceModel newService){
-        SQLiteDatabase dtb = getWritableDatabase();
-
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME,newService.getName());
-        cv.put(COLUMN_PRODUCT_DESCRIPTION, newService.getDescription());
-        cv.put(COLUMN_IMAGE, newService.getImage());
-
-        Integer id = Math.toIntExact(dtb.insert(TABLE_SERVICE, null, cv));
-        dtb.close();
-        return getByIdService(id);
-    }
-    public void updateService(ServiceModel service) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, service.getName());
-        values.put(COLUMN_PRODUCT_DESCRIPTION, service.getDescription());
-        values.put(COLUMN_IMAGE, service.getImage());
-
-        // updating row
-        db.update(TABLE_SERVICE, values, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(service.getId())});
-
-        db.close();
-    }
-    public void deleteService(ServiceModel service) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        // delete record by id
-        db.delete(TABLE_SERVICE, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(service.getId())});
-        db.close();
-    }
-
-    // Store Query
-    public List<StoreModel> getAllStores(){
-        SQLiteDatabase dtb = getReadableDatabase();
-
-        String[] columns = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_STORE_LOCATION
-        };
-
-        String sortOrder = COLUMN_NAME + " ASC";
-
-        List<StoreModel> storesList = new ArrayList<StoreModel>();
-
-        Cursor cursor = dtb.query(TABLE_STORE, //Table to query
-                columns,    //columns to return
-                null,        //columns for the WHERE clause
-                null,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                sortOrder); //The sort order
-
-        if (cursor.moveToFirst()) {
-            do {
-                StoreModel store = new StoreModel();
-                store.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
-                store.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                store.setLocation(cursor.getString(cursor.getColumnIndex(COLUMN_STORE_LOCATION)));
-
-                storesList.add(store);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        dtb.close();
-        return storesList;
-    }
-    public StoreModel getByIdStore(Integer id){
-        SQLiteDatabase dtb = getReadableDatabase();
-
-        String[] columns = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_STORE_LOCATION
-        };
-
-        String selection = "id = ?";
-        String[] selectionArgs = { id.toString() };
-
-        StoreModel store = new StoreModel();
-
-        Cursor cursor = dtb.query(TABLE_STORE, //Table to query
-                columns,    //columns to return
-                selection,        //columns for the WHERE clause
-                selectionArgs,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                null); //The sort order
-
-        if (cursor.moveToFirst()) {
-            do {
-                store.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
-                store.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                store.setLocation(cursor.getString(cursor.getColumnIndex(COLUMN_STORE_LOCATION)));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        dtb.close();
-        return store;
-    }
-    public StoreModel createStore(StoreModel newStore){
-        SQLiteDatabase dtb = getWritableDatabase();
-
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME,newStore.getName());
-        cv.put(COLUMN_STORE_LOCATION, newStore.getLocation());
-
-        Integer id = Math.toIntExact(dtb.insert(TABLE_STORE, null, cv));
-        dtb.close();
-        return getByIdStore(id);
-    }
-    public void updateStore(StoreModel store) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, store.getName());
-        values.put(COLUMN_STORE_LOCATION, store.getLocation());
-
-        // updating row
-        db.update(TABLE_STORE, values, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(store.getId())});
-
-        db.close();
-    }
-    public void deleteStore(StoreModel store) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        // delete record by id
-        db.delete(TABLE_STORE, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(store.getId())});
-        db.close();
-    }
-
-    // Notification Query
-    public List<NotificationModel> getAllNotifies(){
-        SQLiteDatabase dtb = getReadableDatabase();
-
-        String[] columns = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_PRODUCT_DESCRIPTION,
-                COLUMN_NOTIFICATION_STARTDATE,
-                COLUMN_NOTIFICATION_ENDDATE
-        };
-
-        String sortOrder = COLUMN_NAME + " ASC";
-
-        List<NotificationModel> notifiesList = new ArrayList<NotificationModel>();
-
-        Cursor cursor = dtb.query(TABLE_NOTIFICATION, //Table to query
-                columns,    //columns to return
-                null,        //columns for the WHERE clause
-                null,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                sortOrder); //The sort order
-
-        if (cursor.moveToFirst()) {
-            do {
-                NotificationModel noti = new NotificationModel();
-                noti.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
-                noti.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                noti.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_DESCRIPTION)));
-                noti.setStartDate(cursor.getString(cursor.getColumnIndex(COLUMN_NOTIFICATION_STARTDATE)));
-                noti.setEndDate(cursor.getString(cursor.getColumnIndex(COLUMN_NOTIFICATION_ENDDATE)));
-
-                notifiesList.add(noti);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        dtb.close();
-        return notifiesList;
-    }
-    public NotificationModel getByIdNoti(Integer id){
-        SQLiteDatabase dtb = getReadableDatabase();
-
-        String[] columns = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_PRODUCT_DESCRIPTION,
-                COLUMN_NOTIFICATION_STARTDATE,
-                COLUMN_NOTIFICATION_ENDDATE
-        };
-
-        String selection = "id = ?";
-        String[] selectionArgs = { id.toString() };
-
-        NotificationModel noti = new NotificationModel();
-
-        Cursor cursor = dtb.query(TABLE_NOTIFICATION, //Table to query
-                columns,    //columns to return
-                selection,        //columns for the WHERE clause
-                selectionArgs,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                null); //The sort order
-
-        if (cursor.moveToFirst()) {
-            do {
-                noti.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
-                noti.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                noti.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_DESCRIPTION)));
-                noti.setStartDate(cursor.getString(cursor.getColumnIndex(COLUMN_NOTIFICATION_STARTDATE)));
-                noti.setEndDate(cursor.getString(cursor.getColumnIndex(COLUMN_NOTIFICATION_ENDDATE)));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        dtb.close();
-        return noti;
-    }
-    public NotificationModel createNoti(NotificationModel newNoti){
-        SQLiteDatabase dtb = getWritableDatabase();
-
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME,newNoti.getName());
-        cv.put(COLUMN_PRODUCT_DESCRIPTION, newNoti.getDescription());
-        cv.put(COLUMN_NOTIFICATION_STARTDATE, newNoti.getStartDate());
-        cv.put(COLUMN_NOTIFICATION_ENDDATE, newNoti.getEndDate());
 
 
-        Integer id = Math.toIntExact(dtb.insert(TABLE_NOTIFICATION, null, cv));
-        dtb.close();
-        return getByIdNoti(id);
-    }
-    public void updateNoti(NotificationModel noti) {
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME,noti.getName());
-        cv.put(COLUMN_PRODUCT_DESCRIPTION, noti.getDescription());
-        cv.put(COLUMN_NOTIFICATION_STARTDATE, noti.getStartDate());
-        cv.put(COLUMN_NOTIFICATION_ENDDATE, noti.getEndDate());
-
-        // updating row
-        db.update(TABLE_NOTIFICATION, cv, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(noti.getId())});
-
-        db.close();
-    }
-    public void deleteNoti(NotificationModel noti) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        // delete record by id
-        db.delete(TABLE_NOTIFICATION, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(noti.getId())});
-        db.close();
-    }
 
     //  Order Query
     public List<OrderModel> getAllOrders(){
@@ -856,6 +529,47 @@ public class Database extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        dtb.close();
+        return storesList;
+    }
+    public List<OrderModel> getAllOrdersByUserId(Integer userId){
+        SQLiteDatabase dtb = getReadableDatabase();
+
+        String[] columns = {
+                COLUMN_ID,
+                COLUMN_NAME,
+                COLUMN_ORDER_DATE_CREATED,
+                COLUMN_ORDER_TOTAL,
+                COLUMN_ORDER_USER_ID,
+                COLUMN_ORDER_STATUS
+        };
+
+        String sortOrder = COLUMN_ID + " DESC";
+        String selection = "userId = ?";
+        String[] selectionArgs = { userId.toString() };
+
+        List<OrderModel> storesList = new ArrayList<OrderModel>();
+
+        Cursor cursor = dtb.query(TABLE_ORDER, //Table to query
+                columns,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                null); //The sort order
+        if (cursor.moveToFirst()) {
+            do {
+                OrderModel order = new OrderModel();
+                order.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
+                order.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+                order.setDateCreated(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_DATE_CREATED)));
+                order.setTotal(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_TOTAL))));
+                order.setUserID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_USER_ID))));
+                order.setStatus(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_STATUS)));
+                storesList.add(order);
+            } while (cursor.moveToNext());
+        }
         cursor.close();
         dtb.close();
         return storesList;
@@ -902,7 +616,6 @@ public class Database extends SQLiteOpenHelper {
     }
     public OrderModel createOrder(OrderModel newOrder){
         SQLiteDatabase dtb = getWritableDatabase();
-
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME,newOrder.getName());
         cv.put(COLUMN_ORDER_DATE_CREATED, newOrder.getDateCreated());
@@ -989,7 +702,7 @@ public class Database extends SQLiteOpenHelper {
                 COLUMN_ORDER_TOTAL
         };
 
-        String sortOrder = COLUMN_NAME + " ASC";
+        String sortOrder = "id ASC";
         String selection = "orderId = ?";
         String[] selectionArgs = { order.getId().toString() };
 
