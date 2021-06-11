@@ -42,10 +42,12 @@ public class UserInfoFragment extends Fragment {
     public static UserInfoFragment newInstance() {
         return new UserInfoFragment();
     }
-
+    public LayoutInflater inflaterTempt;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,
                               Bundle savedInstanceState) {
+        inflaterTempt = inflater;
+
         mViewModel =
                 new ViewModelProvider(this).get(UserInfoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_userinfo, container, false);
@@ -89,6 +91,14 @@ public class UserInfoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(UserInfoViewModel.class);
         // TODO: Use the ViewModel
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(UserModel.CURRENT_USER == null){
+            Intent intent = new Intent(inflaterTempt.getContext(), LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
 
