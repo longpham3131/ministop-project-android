@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="37dp"
+    android:background="@color/secondary_color"
     tools:context=".ui.userDetail.UserInfoFragment">
 
     <TextView
@@ -96,6 +97,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:text="Cập nhật"
+        android:textColor="@color/white"
         android:backgroundTint="@color/themeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,8 +134,12 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/rvListOrder">
         <Button
+            android:layout_marginHorizontal="15dp"
+            android:backgroundTint="@color/primary_color"
             android:id="@+id/btnSignOut"
+            android:textStyle="bold"
             android:layout_width="match_parent"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:text="Đăng xuất"
             />

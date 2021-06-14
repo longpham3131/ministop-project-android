@@ -100,6 +100,11 @@ public class CheckOutActivity extends AppCompatActivity {
     }
     public  static  void enableButton(Boolean isEnable){
         btnCheckOut.setEnabled(isEnable);
+        if(isEnable == false){
+            btnCheckOut.setVisibility(View.INVISIBLE);
+        }else {
+            btnCheckOut.setVisibility(View.VISIBLE);
+        }
     }
     public static void calculatorTotalPrice() {
         int totalPrice = 0;
@@ -113,7 +118,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
     public void loadData() {
         totalPriceCart = (TextView) findViewById(R.id.text_totalPrice);
-        btnCheckOut = (Button) findViewById(R.id.btnCheckOut);
+        btnCheckOut = (Button) findViewById(R.id.btn_check_out);
         rvCart = (RecyclerView) findViewById(R.id.rvCart);
         lCartModel = MainActivity.arrayCart;
         CheckOutAdapter checkOutAdapter = new CheckOutAdapter(lCartModel);

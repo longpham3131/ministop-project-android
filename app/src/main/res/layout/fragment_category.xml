@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:theme="@style/Theme.MyProject"
-    android:background="@drawable/sub_menu"
+    android:background="@color/secondary_color"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -34,7 +34,7 @@
                 android:layout_marginRight="10dp">
 
                 <Button
-                    android:id="@+id/btnCtgSandwich"
+                    android:id="@+id/btn_category_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F1F1F1"
@@ -49,7 +49,7 @@
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_normal"
-                    android:text="Sandwich" />
+                    android:text="CƠM NGON MẸ NẤU" />
 
             </LinearLayout>
             <LinearLayout
@@ -61,7 +61,7 @@
                 android:layout_marginRight="10dp">
 
                 <Button
-                    android:id="@+id/btnCtgNuocGiaiKhat"
+                    android:id="@+id/btn_category_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/dicho"
@@ -73,12 +73,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="Nước giải khát"
+                    android:text="MÌ"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_normal" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="98dp"
                 android:layout_height="wrap_content"
@@ -88,7 +89,7 @@
                 android:layout_marginRight="10dp">
 
                 <Button
-                    android:id="@+id/btnCtgSushi"
+                    android:id="@+id/btn_category_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/dicho"
@@ -103,34 +104,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/text_size_normal"
                     android:textColor="#000000"
-                    android:text="Sushi" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="98dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <Button
-                    android:id="@+id/btnCtgOnigiri"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/dicho"
-                    android:paddingTop="20dp"
-                    android:backgroundTint="#F1F1F1"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/text_size_normal"
-                    android:textColor="#000000"
-                    android:text="Onigiri" />
+                    android:text="THỨC ĂN NHANH" />
 
             </LinearLayout>
         </LinearLayout>
@@ -151,7 +125,7 @@
                 android:layout_marginRight="10dp">
 
                 <Button
-                    android:id="@+id/btnCtgTrangMieng"
+                    android:id="@+id/btn_category_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F1F1F1"
@@ -166,7 +140,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/text_size_normal"
                     android:textColor="#000000"
-                    android:text="Tráng Miệng" />
+                    android:text="ĂN VẶT" />
 
             </LinearLayout>
             <LinearLayout
@@ -178,7 +152,7 @@
                 android:layout_marginRight="10dp">
 
                 <Button
-                    android:id="@+id/btnCtgCom"
+                    android:id="@+id/btn_category_5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F1F1F1"
@@ -193,9 +167,10 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/text_size_normal"
                     android:textColor="#000000"
-                    android:text="Cơm" />
+                    android:text="NƯỚC UỐNG" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="98dp"
                 android:layout_height="wrap_content"
@@ -205,11 +180,11 @@
                 android:layout_marginRight="10dp">
 
                 <Button
-                    android:id="@+id/btnCtgOden"
+                    android:id="@+id/btn_category_6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F1F1F1"
-                    android:drawableTop="@drawable/dotuoi"
+                    android:drawableTop="@drawable/huuco"
                     android:paddingTop="20dp"
                     android:layout_weight="1" />
 
@@ -220,34 +195,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/text_size_normal"
                     android:textColor="#000000"
-                    android:text="Oden" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="98dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <Button
-                    android:id="@+id/btnCtgThucAnNhanh"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#F1F1F1"
-                    android:drawableTop="@drawable/traicay"
-                    android:paddingTop="20dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/text_size_normal"
-                    android:textColor="#000000"
-                    android:text="Thức ăn nhanh" />
+                    android:text="THỨC ĂN CHAY" />
 
             </LinearLayout>
         </LinearLayout>

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ public class ProductActivity extends AppCompatActivity {
     List<ProductModel> lSearchproducts;
     RecyclerView rvProducts;
     static TextView totalPriceCart;
+    static TextView txtSizeItem;
     static Button btnGoCart;
     String result ;
 
@@ -35,6 +37,7 @@ public class ProductActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Sản phẩm");
+//        getSupportActionBar().setBackgroundDrawable(Color.parseColor("@color/primary_color"));
         //Functions
         loadData();
         calculatorTotalPrice();
@@ -68,11 +71,17 @@ public class ProductActivity extends AppCompatActivity {
         rvProducts.setLayoutManager(new LinearLayoutManager(this));
         //TextView totalPrice
         totalPriceCart = (TextView) findViewById(R.id.text_totalPrice);
+        txtSizeItem = (TextView) findViewById(R.id.txtSizeItem);
         //Button
         btnGoCart = (Button) findViewById(R.id.btnCheckOut);
     }
     public  static  void enableButton(Boolean isEnable){
         btnGoCart.setEnabled(isEnable);
+        if(isEnable == false){
+            btnGoCart.setVisibility(View.INVISIBLE);
+        }else {
+            btnGoCart.setVisibility(View.VISIBLE);
+        }
     }
     public static void calculatorTotalPrice() {
         int totalPrice = 0;
@@ -81,6 +90,8 @@ public class ProductActivity extends AppCompatActivity {
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         totalPriceCart.setText(decimalFormat.format(totalPrice) + " Đ" );
+        //
+        txtSizeItem.setText(" ( "+String.valueOf(MainActivity.arrayCart.size())+" ): ");
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {

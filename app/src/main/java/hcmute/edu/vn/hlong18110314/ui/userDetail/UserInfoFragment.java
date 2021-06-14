@@ -46,6 +46,7 @@ public class UserInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,
                               Bundle savedInstanceState) {
+
         inflaterTempt = inflater;
 
         mViewModel =
@@ -100,7 +101,5 @@ public class UserInfoFragment extends Fragment {
             startActivity(intent);
         }
     }
-
-
 
 }

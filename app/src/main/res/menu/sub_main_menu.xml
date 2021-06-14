@@ -12,10 +12,5 @@
         android:title="Item 2"
         android:icon="@drawable/ic_profile_sub_menu"
         app:showAsAction="ifRoom" />
-<!--    <item-->
-<!--        android:id="@+id/item_sub_main_search"-->
-<!--        android:icon="@drawable/ic_search_sub_menu"-->
-<!--        android:title="Item 3"-->
-<!--        app:showAsAction="ifRoom">-->
-<!--    </item>-->
+
 </menu>
