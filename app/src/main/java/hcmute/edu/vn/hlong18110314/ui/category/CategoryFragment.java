@@ -2,17 +2,28 @@ package hcmute.edu.vn.hlong18110314.ui.category;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
+import java.util.List;
+
+import hcmute.edu.vn.hlong18110314.MainActivity;
 import hcmute.edu.vn.hlong18110314.R;
+import hcmute.edu.vn.hlong18110314.database.Model.CartModel;
+import hcmute.edu.vn.hlong18110314.ui.CheckOut.CheckOutActivity;
+import hcmute.edu.vn.hlong18110314.ui.home.HomeAdapter;
 import hcmute.edu.vn.hlong18110314.ui.product.ProductActivity;
 
 public class CategoryFragment extends Fragment {
@@ -24,6 +35,13 @@ public class CategoryFragment extends Fragment {
     public Button btnCtgSoftDrink;
     public Button btnCtgChay;
 
+    public  static RecyclerView rvCart;
+    public static TextView txtNumberItem;
+    public static TextView txtTotalPriceCart;
+    public static TextView rvCartNull;
+    public static Button btnGoCheckOut;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
@@ -34,6 +52,11 @@ public class CategoryFragment extends Fragment {
         btnCtgSnack = (Button) root.findViewById(R.id.btn_category_4);
         btnCtgSoftDrink = (Button) root.findViewById(R.id.btn_category_5);
         btnCtgChay = (Button) root.findViewById(R.id.btn_category_6);
+
+        txtNumberItem = (TextView) root.findViewById(R.id.txtNumberItem);
+        txtTotalPriceCart = (TextView) root.findViewById(R.id.txtTotalPriceCart);
+        rvCartNull = (TextView) root.findViewById(R.id.rvCartNull);
+        btnGoCheckOut = (Button) root.findViewById(R.id.btnGoCheckOut);
 
         btnCtgRice.setOnClickListener((view)->{
             Intent intent = new Intent(inflater.getContext(), ProductActivity.class);
@@ -65,7 +88,50 @@ public class CategoryFragment extends Fragment {
             intent.putExtra("CATEGORY_ID", 6);
             startActivity(intent);
         });
+        btnGoCheckOut.setOnClickListener((view) ->{
+            Intent intent = new Intent(inflater.getContext(), CheckOutActivity.class);
+            startActivity(intent);
+        });
+        rvCart = (RecyclerView) root.findViewById(R.id.rvCart);
+        if(MainActivity.arrayCart.size() == 0){
+            enableFunction(false);
+        }
+        else{
+            enableFunction(true);
+        }
+        onCreateRecycleView();
+        calculatorTotalPrice();
+
 
         return root;
+    }
+
+    private void onCreateRecycleView() {
+        List<CartModel> cartModelList = MainActivity.arrayCart;
+        CategoryAdapter homeAdapter = new CategoryAdapter(cartModelList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rvCart.setAdapter(homeAdapter);
+        rvCart.setLayoutManager(layoutManager);
+    }
+    public static void enableFunction(Boolean isEnable){
+        btnGoCheckOut.setEnabled(isEnable);
+        if(isEnable == false){
+            rvCartNull.setVisibility(View.VISIBLE);
+            rvCart.setVisibility(View.GONE);
+            btnGoCheckOut.setVisibility(View.INVISIBLE);
+        }else {
+            rvCartNull.setVisibility(View.GONE);
+            rvCart.setVisibility(View.VISIBLE);
+            btnGoCheckOut.setVisibility(View.VISIBLE);
+        }
+    }
+    public static void calculatorTotalPrice() {
+        int totalPrice = 0;
+        for(int i = 0 ; i < MainActivity.arrayCart.size() ; i++){
+            totalPrice += MainActivity.arrayCart.get(i).getTotalPrice();
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        txtTotalPriceCart.setText("Tổng tiền: " + decimalFormat.format(totalPrice) + " Đ" );
+        txtNumberItem.setText(String.valueOf(MainActivity.arrayCart.size())+" Món");
     }
 }

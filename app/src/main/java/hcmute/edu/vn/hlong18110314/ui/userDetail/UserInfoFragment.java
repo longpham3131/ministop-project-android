@@ -67,7 +67,7 @@ public class UserInfoFragment extends Fragment {
             UserModel.CURRENT_USER.setFullName(txtDisplayNameUpdate.getText().toString());
             UserModel.CURRENT_USER.setPassword(txtPasswordUpdate.getText().toString());
             database.updateUser(UserModel.CURRENT_USER);
-            Toast.makeText(inflater.getContext(), "Cập nhật thành công", Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(), "Cập nhật thành công", Toast.LENGTH_SHORT);
         });
         btnSignOut = (Button) root.findViewById(R.id.btnSignOut);
         btnSignOut.setOnClickListener((view) -> {

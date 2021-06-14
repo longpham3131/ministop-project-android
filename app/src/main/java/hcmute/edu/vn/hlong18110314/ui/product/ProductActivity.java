@@ -18,6 +18,7 @@ import java.util.List;
 import hcmute.edu.vn.hlong18110314.MainActivity;
 import hcmute.edu.vn.hlong18110314.R;
 import hcmute.edu.vn.hlong18110314.database.Database;
+import hcmute.edu.vn.hlong18110314.database.Model.CategoryModel;
 import hcmute.edu.vn.hlong18110314.database.Model.ProductModel;
 import hcmute.edu.vn.hlong18110314.ui.CheckOut.CheckOutActivity;
 
@@ -36,7 +37,7 @@ public class ProductActivity extends AppCompatActivity {
         // toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Sản phẩm");
+
 //        getSupportActionBar().setBackgroundDrawable(Color.parseColor("@color/primary_color"));
         //Functions
         loadData();
@@ -63,7 +64,13 @@ public class ProductActivity extends AppCompatActivity {
         // RecycleView
         rvProducts = (RecyclerView) findViewById(R.id.dataProduct);
         Integer category_id = getIntent().getIntExtra("CATEGORY_ID",1);
+
+
         Database database = new Database(this, Database.DATABASE_NAME, null);
+
+        CategoryModel categoryModel =database.getByIdCategory(category_id);
+        getSupportActionBar().setTitle(categoryModel.getName());
+
         List<ProductModel> dbproducts = database.getProductByCategoryId(category_id);
         lSearchproducts = dbproducts;
         ProductAdapter adapter = new ProductAdapter(lSearchproducts);
