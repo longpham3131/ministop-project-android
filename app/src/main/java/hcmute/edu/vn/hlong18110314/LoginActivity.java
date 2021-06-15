@@ -1,7 +1,9 @@
 package hcmute.edu.vn.hlong18110314;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -44,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
+            else {
+                OpenDialogUpdate("Đăng nhập", "Email hoặc mật khẩu không đúng");
+            }
 
         });
 
@@ -53,5 +58,17 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+    }
+    private void  OpenDialogUpdate(String tittle, String message){
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(tittle)
+                .setMessage(message)
+                .setNegativeButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .create();
+        dialog.show();
     }
 }

@@ -1,7 +1,10 @@
 package hcmute.edu.vn.hlong18110314.ui.userDetail;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -67,13 +70,11 @@ public class UserInfoFragment extends Fragment {
             UserModel.CURRENT_USER.setFullName(txtDisplayNameUpdate.getText().toString());
             UserModel.CURRENT_USER.setPassword(txtPasswordUpdate.getText().toString());
             database.updateUser(UserModel.CURRENT_USER);
-            Toast.makeText(getContext(), "Cập nhật thành công", Toast.LENGTH_SHORT);
+            OpenDialogUpdate();
         });
         btnSignOut = (Button) root.findViewById(R.id.btnSignOut);
         btnSignOut.setOnClickListener((view) -> {
-            Intent intent = new Intent(inflater.getContext(), LoginActivity.class);
-            UserModel.CURRENT_USER = null;
-            startActivity(intent);
+            OpenDialogSignOut();
         });
         rvListOrder = (RecyclerView) root.findViewById(R.id.rvListOrder);
         List<OrderModel> listOrder = database.getAllOrdersByUserId(UserModel.CURRENT_USER.getId());
@@ -84,9 +85,39 @@ public class UserInfoFragment extends Fragment {
         int curSize = adapter.getItemCount();
         return root;
     }
-//    public static void IntentToActivity( int order_id){
-//        Intent intent = new Intent( )
-//    }
+
+    private void OpenDialogSignOut(){
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
+                .setTitle("Đăng xuất")
+                .setMessage("Bạn muốn đăng xuất khỏi ứng dụng")
+                .setNegativeButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        UserModel.CURRENT_USER = null;
+                        startActivity(intent);
+                    }
+                }).setPositiveButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .create();
+        dialog.show();
+    }
+
+    private void  OpenDialogUpdate(){
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
+                .setTitle("Cập nhật")
+                .setMessage("Cập nhật thành công")
+                .setNegativeButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .create();
+        dialog.show();
+    }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

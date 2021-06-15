@@ -1,7 +1,9 @@
 package hcmute.edu.vn.hlong18110314;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -42,11 +44,11 @@ public class RegisterActivity extends AppCompatActivity {
             String fullName = txtFullNameRes.getText().toString();
 
             if(dtb.checkUserExist(email)){
-                Toast.makeText(this, "Tài khoản đã tồn tại", Toast.LENGTH_SHORT);
+                OpenDialogUpdate("Đăng ký", "LỖI !! : Email của bạn đã được đăng ký");
             }
             else{
                 dtb.userCreate(email, pass, fullName, "user",null);
-                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT);
+                OpenDialogUpdate("Đăng ký", "Đăng ký thành công");
 
 
             }
@@ -57,25 +59,16 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
-//    public void take_Pic(final View view) {
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-//
-//    }
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-//
-//            if (resultCode == RESULT_OK) {
-//
-//                Bitmap myBitmap = data.getExtras().getParcelable("data");
-//                picture = myBitmap;
-//                ImageView photo = (ImageView) findViewById(R.id.imgViewAvatar);
-//                photo.setImageBitmap(myBitmap);// here I am setting the pic to an image view for the user to have a look.
-//
-//            }
-//
-//        }
-//    }
+    private void  OpenDialogUpdate(String tittle, String message){
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(tittle)
+                .setMessage(message)
+                .setNegativeButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .create();
+        dialog.show();
+    }
 }
