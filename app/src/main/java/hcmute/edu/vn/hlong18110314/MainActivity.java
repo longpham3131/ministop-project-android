@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createDataBase() {
 
-        database.userCreate("user@gmail.com", "123", "Pham Hoang Long", "user", 0);
+        database.userCreate("longpham3131@gmail.com", "123", "Pham Hoang Long", "user", 0);
         database.createCategory(new CategoryModel("CƠM NGON MẸ NẤU",0));//1
         database.createCategory(new CategoryModel("MÌ",0));//2
         database.createCategory(new CategoryModel("THỨC ĂN NHANH",0));//3
