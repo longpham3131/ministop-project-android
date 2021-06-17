@@ -15,30 +15,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="Danh mục"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:paddingLeft="10dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_weight="2"
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             >
 
             <LinearLayout
-                android:layout_width="98dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_category_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#F1F1F1"
-                    android:drawableTop="@drawable/dicho"
-                    android:paddingTop="20dp"
+                    android:layout_width="130dp"
+                    android:layout_height="110dp"
+                    android:layout_x="0dp"
+                    android:layout_y="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/thit_kho_dau_hu"
+                    android:adjustViewBounds="true"
+                    android:gravity="center_vertical"
                     android:layout_weight="1" />
 
                 <TextView
@@ -46,26 +59,30 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:textAlignment="center"
+                    android:textStyle="bold"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_normal"
                     android:text="CƠM NGON MẸ NẤU" />
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="98dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_category_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/dicho"
-                    android:paddingTop="20dp"
-                    android:backgroundTint="#F1F1F1"
+                    android:layout_width="130dp"
+                    android:layout_height="110dp"
+                    android:layout_x="0dp"
+                    android:layout_y="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/mi_cay"
+                    android:adjustViewBounds="true"
+                    android:gravity="center_vertical"
                     android:layout_weight="1" />
 
                 <TextView
@@ -73,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="MÌ"
+                    android:textStyle="bold"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_normal" />
@@ -80,20 +98,24 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="98dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_category_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/dicho"
-                    android:paddingTop="20dp"
-                    android:backgroundTint="#F1F1F1"
+                    android:layout_width="130dp"
+                    android:layout_height="110dp"
+                    android:layout_x="0dp"
+                    android:layout_y="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/khoai_tay_chien"
+                    android:adjustViewBounds="true"
+                    android:gravity="center_vertical"
+
                     android:layout_weight="1" />
 
                 <TextView
@@ -101,6 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:textAlignment="center"
+                    android:textStyle="bold"
                     android:textSize="@dimen/text_size_normal"
                     android:textColor="#000000"
                     android:text="THỨC ĂN NHANH" />
@@ -109,27 +132,30 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="150dp"
+            android:layout_weight="2"
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             >
 
             <LinearLayout
-                android:layout_width="98dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_category_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#F1F1F1"
-                    android:drawableTop="@drawable/huuco"
-                    android:paddingTop="20dp"
+                    android:layout_width="130dp"
+                    android:layout_height="110dp"
+                    android:layout_x="0dp"
+                    android:layout_y="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/banh_tran_tron"
+                    android:adjustViewBounds="true"
+                    android:gravity="center_vertical"
                     android:layout_weight="1" />
 
                 <TextView
@@ -137,32 +163,37 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:textAlignment="center"
+                    android:textStyle="bold"
                     android:textSize="@dimen/text_size_normal"
                     android:textColor="#000000"
                     android:text="ĂN VẶT" />
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="98dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_category_5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#F1F1F1"
-                    android:drawableTop="@drawable/nhapkhau"
-                    android:paddingTop="20dp"
+                    android:layout_width="130dp"
+                    android:layout_height="110dp"
+                    android:layout_x="0dp"
+                    android:layout_y="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tra_sen_vang"
+                    android:adjustViewBounds="true"
+                    android:gravity="center_vertical"
                     android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
+                    android:textStyle="bold"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_size_normal"
                     android:textColor="#000000"
@@ -171,26 +202,30 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="98dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_category_6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#F1F1F1"
-                    android:drawableTop="@drawable/huuco"
-                    android:paddingTop="20dp"
+                    android:layout_width="130dp"
+                    android:layout_height="110dp"
+                    android:layout_x="0dp"
+                    android:layout_y="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ngu_coc"
+                    android:adjustViewBounds="true"
+                    android:gravity="center_vertical"
                     android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
+                    android:textStyle="bold"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_size_normal"
                     android:textColor="#000000"
@@ -203,7 +238,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="20dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

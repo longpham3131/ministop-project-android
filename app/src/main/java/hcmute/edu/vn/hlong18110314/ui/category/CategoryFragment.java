@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +29,12 @@ import hcmute.edu.vn.hlong18110314.ui.product.ProductActivity;
 
 public class CategoryFragment extends Fragment {
     private CategoryViewModel categoryViewModel;
-    public Button btnCtgRice;
-    public Button btnCtgNoodle;
-    public Button btnCtgFFood;
-    public Button btnCtgSnack;
-    public Button btnCtgSoftDrink;
-    public Button btnCtgChay;
+    public ImageButton btnCtgRice;
+    public ImageButton btnCtgNoodle;
+    public ImageButton btnCtgFFood;
+    public ImageButton btnCtgSnack;
+    public ImageButton btnCtgSoftDrink;
+    public ImageButton btnCtgChay;
 
     public  static RecyclerView rvCart;
     public static TextView txtNumberItem;
@@ -46,12 +47,12 @@ public class CategoryFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_category, container, false);
-        btnCtgRice = (Button) root.findViewById(R.id.btn_category_1);
-        btnCtgNoodle = (Button) root.findViewById(R.id.btn_category_2);
-        btnCtgFFood = (Button) root.findViewById(R.id.btn_category_3);
-        btnCtgSnack = (Button) root.findViewById(R.id.btn_category_4);
-        btnCtgSoftDrink = (Button) root.findViewById(R.id.btn_category_5);
-        btnCtgChay = (Button) root.findViewById(R.id.btn_category_6);
+        btnCtgRice = (ImageButton) root.findViewById(R.id.btn_category_1);
+        btnCtgNoodle = (ImageButton) root.findViewById(R.id.btn_category_2);
+        btnCtgFFood = (ImageButton) root.findViewById(R.id.btn_category_3);
+        btnCtgSnack = (ImageButton) root.findViewById(R.id.btn_category_4);
+        btnCtgSoftDrink = (ImageButton) root.findViewById(R.id.btn_category_5);
+        btnCtgChay = (ImageButton) root.findViewById(R.id.btn_category_6);
 
         txtNumberItem = (TextView) root.findViewById(R.id.txtNumberItem);
         txtTotalPriceCart = (TextView) root.findViewById(R.id.txtTotalPriceCart);

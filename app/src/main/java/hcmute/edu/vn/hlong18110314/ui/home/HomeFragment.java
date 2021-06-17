@@ -27,7 +27,9 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private Database database;
     public RecyclerView rvCart;
+    public RecyclerView rvCart2;
     Button btnGoToMom;
+    Button btnGoToDrink;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +43,13 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
+        btnGoToDrink = (Button) root.findViewById(R.id.btnGoToDrink);
+        btnGoToDrink.setOnClickListener((view) -> {
+            Intent intent = new Intent(inflater.getContext(), ProductActivity.class);
+            intent.putExtra("CATEGORY_ID", 5);
+            startActivity(intent);
+        });
+
         database = new Database(getContext(), Database.DATABASE_NAME, null);
         List<ProductModel> dbproducts = database.getProductByCategoryId(1);
         HomeAdapter homeAdapter = new HomeAdapter(dbproducts);
@@ -49,6 +58,14 @@ public class HomeFragment extends Fragment {
         rvCart = (RecyclerView) root.findViewById(R.id.rvCart);
         rvCart.setAdapter(homeAdapter);
         rvCart.setLayoutManager(layoutManager);
+
+        List<ProductModel> dbproductsDrink = database.getProductByCategoryId(5);
+        HomeAdapter homeAdapter2 = new HomeAdapter(dbproductsDrink);
+
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rvCart2 = (RecyclerView) root.findViewById(R.id.rvCart2);
+        rvCart2.setAdapter(homeAdapter2);
+        rvCart2.setLayoutManager(layoutManager2);
 
         return root;
     }

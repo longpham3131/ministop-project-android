@@ -16,25 +16,7 @@
         android:background="@color/background_color"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:background="@color/secondary_color"
-            android:layout_height="wrap_content"
-            >
-            <EditText
-                android:id="@+id/editTextTextPersonName"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/search_text"
-                android:drawableLeft="@drawable/ic_baseline_search_24"
-                android:ems="10"
-                android:hint="Tìm sản phẩm theo tên"
-                android:inputType="textPersonName"
-                android:paddingLeft="20dp"
-                />
-        </RelativeLayout>
+
     </LinearLayout>
 
     <ImageView
@@ -83,7 +65,49 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCart"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="150dp"
+            android:paddingHorizontal="10dp"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="30dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:textColor="@color/black"
+                android:text="Đồ uống tươi mát"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                />
+            <Button
+                android:id="@+id/btnGoToDrink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary_color"
+                android:textColor="@color/white"
+                android:text="Xem thêm"
+                android:textAlignment="textEnd"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCart2"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:paddingHorizontal="10dp"
             android:layout_marginBottom="50dp"
             />

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<hcmute.edu.vn.hlong181
         lCartM = lCart;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView imgItemCart;
         public TextView nameProduct;
         public TextView priceProduct;
         public TextView numberOfProduct;
@@ -32,6 +34,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<hcmute.edu.vn.hlong181
 
         public ViewHolder( View itemView) {
             super(itemView);
+            imgItemCart = (ImageView) itemView.findViewById(R.id.imgItemCart);
             nameProduct = (TextView) itemView.findViewById(R.id.txtItemCartName);
             numberOfProduct = (TextView) itemView.findViewById(R.id.txtCartQuantity);
             priceProduct = (TextView) itemView.findViewById(R.id.txtItemCartCost);
@@ -61,6 +64,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<hcmute.edu.vn.hlong181
         //Lấy dữ liệu từ MainActivity
         CategoryFragment categoryFragment = new CategoryFragment();
         CartModel cartModel = MainActivity.arrayCart.get(position);
+        holder.imgItemCart.setImageResource(cartModel.getImage());
         holder.nameProduct.setText(cartModel.getName());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         holder.priceProduct.setText(decimalFormat.format(cartModel.getPrice())  + " Đ");
