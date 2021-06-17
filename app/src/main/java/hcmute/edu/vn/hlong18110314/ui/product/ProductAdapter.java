@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +29,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public  Button btnMinus;
         public  TextView txtValues;
         public  Button btnPlus;
+        public ImageView imgItemProduct;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            imgItemProduct = (ImageView) itemView.findViewById(R.id.imgItemProduct);
             nameProduct = (TextView) itemView.findViewById(R.id.txtItemProductName);
             costProduct = (TextView) itemView.findViewById(R.id.txtItemProductCost);
             btnMinus = (Button) itemView.findViewById(R.id.btnMinus);
@@ -60,6 +63,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(ProductAdapter.ViewHolder holder, int position) {
         ProductActivity productActivity = new ProductActivity();
         ProductModel product = mProducts.get(position);
+
+        holder.imgItemProduct.setImageResource(product.getImage());
         holder.nameProduct.setText(product.getName());
         TextView costproduct = holder.costProduct;
         TextView txtValues = holder.txtValues;

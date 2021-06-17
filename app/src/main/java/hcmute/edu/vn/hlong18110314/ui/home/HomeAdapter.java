@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView imgItemProduct;
         public TextView nameProduct;
         public TextView costProduct;
         public  Button btnMinus;
@@ -37,6 +39,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         public ViewHolder( View itemView) {
             super(itemView);
+            imgItemProduct = (ImageView) itemView.findViewById(R.id.imgItemProduct);
             nameProduct = (TextView) itemView.findViewById(R.id.txtItemProductName);
             costProduct = (TextView) itemView.findViewById(R.id.txtItemProductCost);
             btnMinus = (Button) itemView.findViewById(R.id.btnMinus);
@@ -64,6 +67,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder( HomeAdapter.ViewHolder holder, int position) {
         ProductModel product = mProducts.get(position);
         holder.nameProduct.setText(product.getName());
+        holder.imgItemProduct.setImageResource(product.getImage());
         TextView costproduct = holder.costProduct;
         TextView txtValues = holder.txtValues;
         txtValues.setText(0 + "");

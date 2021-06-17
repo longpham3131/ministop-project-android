@@ -73,7 +73,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     // User Query
-    public void userCreate(String email, String password, String fullName,String role, byte[] image){
+    public void userCreate(String email, String password, String fullName,String role, int image){
         SQLiteDatabase dtb = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -116,7 +116,7 @@ public class Database extends SQLiteOpenHelper {
                 user.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
                 user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_USER_EMAIL)));
                 user.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_FULL_NAME)));
-                user.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
+                user.setImage(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE)));
                 user.setPoint(cursor.getString(cursor.getColumnIndex(COLUMN_USER_POINT)));
                 user.setRole(cursor.getString(cursor.getColumnIndex(COLUMN_USER_ROLE)));
                 user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_USER_PASSWORD)));
@@ -161,7 +161,7 @@ public class Database extends SQLiteOpenHelper {
             user.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
             user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_USER_EMAIL)));
             user.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_FULL_NAME)));
-            user.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
+            user.setImage(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE)));
             user.setPoint(cursor.getString(cursor.getColumnIndex(COLUMN_USER_POINT)));
             user.setRole(cursor.getString(cursor.getColumnIndex(COLUMN_USER_ROLE)));
             user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_USER_PASSWORD)));
@@ -245,7 +245,7 @@ public class Database extends SQLiteOpenHelper {
                 CategoryModel category = new CategoryModel();
                 category.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
                 category.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                category.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
+                category.setImage(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE)));
 
                 categoriesList.add(category);
             } while (cursor.moveToNext());
@@ -281,7 +281,7 @@ public class Database extends SQLiteOpenHelper {
             do {
                 category.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
                 category.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                category.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
+                category.setImage(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE)));
             } while (cursor.moveToNext());
         }
 
@@ -352,7 +352,7 @@ public class Database extends SQLiteOpenHelper {
                 product.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
                 product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
                 product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_DESCRIPTION)));
-                product.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
+                product.setImage(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE)));
                 product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_CATEGORY_ID)));
                 product.setPrice(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_PRICE)));
 
@@ -394,7 +394,7 @@ public class Database extends SQLiteOpenHelper {
                 product.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
                 product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
                 product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_DESCRIPTION)));
-                product.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
+                product.setImage(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE)));
                 product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_CATEGORY_ID)));
                 product.setPrice(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_PRICE)));
 
@@ -436,7 +436,7 @@ public class Database extends SQLiteOpenHelper {
                 product.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))));
                 product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
                 product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_DESCRIPTION)));
-                product.setImage(cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)));
+                product.setImage(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE)));
                 product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_CATEGORY_ID)));
                 product.setPrice(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_PRICE)));
             } while (cursor.moveToNext());
@@ -811,12 +811,12 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("PRAGMA foreign_keys = ON");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT,email NVARCHAR(200) UNIQUE, password NVACHAR(200) NOT NULL," +
-                " fullName NVARCHAR(100),point INTEGER default 0,role NVARCHAR(20), image BLOB)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS category(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200), image BLOB)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS product(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200),description NVACHAR, image BLOB,categoryId INTEGER,price INTEGER," +
+                " fullName NVARCHAR(100),point INTEGER default 0,role NVARCHAR(20), image INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS category(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200), image INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS product(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200),description NVACHAR, image INTEGER,categoryId INTEGER,price INTEGER," +
                 " FOREIGN KEY (categoryId) REFERENCES category(id) ON DELETE CASCADE)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS voucher(id INTEGER PRIMARY KEY AUTOINCREMENT,value INTEGER, name NVACHAR(200), image BLOB)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS service(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200),description NVACHAR(200),image BLOB)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS voucher(id INTEGER PRIMARY KEY AUTOINCREMENT,value INTEGER, name NVACHAR(200), image INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS service(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200),description NVACHAR(200),image INTEGER)");
         db.execSQL("CREATE TABLE IF NOT EXISTS store(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200), location NVACHAR(200))");
         db.execSQL("CREATE TABLE IF NOT EXISTS notification(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200), description NVACHAR(200), startDate NVACHAR(200), endDate NVACHAR(200))");
         db.execSQL("CREATE TABLE IF NOT EXISTS orderProduct(id INTEGER PRIMARY KEY AUTOINCREMENT, name NVACHAR(200),dateCreated NVARCHAR, total INTEGER, userId INTEGER, status NVARCHAR(100))");

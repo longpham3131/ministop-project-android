@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ProductModel {
     private Integer id;
     private String name;
-    private byte[] image;
+    private int image;
     private Integer categoryId;
     private String description;
     private int price;
@@ -26,11 +26,11 @@ public class ProductModel {
         this.name = name;
     }
 
-    public byte[] getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
@@ -62,7 +62,7 @@ public class ProductModel {
         this.name = name;
         this.price = price;
     }
-    public ProductModel( String name, byte[] image, Integer categoryId, String description,int price){
+    public ProductModel( String name, int image, Integer categoryId, String description,int price){
         this.name = name;
         this.image=image;
         this.categoryId = categoryId;

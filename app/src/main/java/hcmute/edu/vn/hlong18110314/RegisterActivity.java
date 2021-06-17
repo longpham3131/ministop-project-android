@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                 OpenDialogUpdate("Đăng ký", "LỖI !! : Email của bạn đã được đăng ký");
             }
             else{
-                dtb.userCreate(email, pass, fullName, "user",null);
+                dtb.userCreate(email, pass, fullName, "user",0);
                 OpenDialogUpdate("Đăng ký", "Đăng ký thành công");
 
 

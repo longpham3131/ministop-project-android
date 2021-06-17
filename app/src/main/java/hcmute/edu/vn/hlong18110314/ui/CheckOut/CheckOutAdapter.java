@@ -1,10 +1,12 @@
 package hcmute.edu.vn.hlong18110314.ui.CheckOut;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
+        public ImageView imgItemCart;
         public TextView nameProduct;
         public TextView priceProduct;
         public TextView numberOfProduct;
@@ -33,6 +36,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
+            imgItemCart = (ImageView) itemView.findViewById(R.id.imgItemCart);
             nameProduct = (TextView) itemView.findViewById(R.id.txtItemCartName);
             numberOfProduct = (TextView) itemView.findViewById(R.id.txtCartQuantity);
             priceProduct = (TextView) itemView.findViewById(R.id.txtItemCartCost);
@@ -66,6 +70,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHo
         CheckOutActivity checkOut = new CheckOutActivity();
         CartModel cartModel = MainActivity.arrayCart.get(position);
         holder.nameProduct.setText(cartModel.getName());
+        holder.imgItemCart.setImageResource(cartModel.getImage());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         holder.priceProduct.setText(decimalFormat.format(cartModel.getPrice())  + " Đ");
         holder.numberOfProduct.setText(cartModel.getNumberOfProduct() + "");

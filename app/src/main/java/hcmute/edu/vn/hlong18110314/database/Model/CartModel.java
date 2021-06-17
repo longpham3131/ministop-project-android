@@ -4,11 +4,11 @@ public class CartModel {
     public int productId;
     public  String name;
     public  int price;
-    public  byte[] image;
+    public  int image;
     public  int numberOfProduct;
     public  int totalPrice;
 
-    public CartModel(int productId, String name, int price, byte[] image, int numberOfProduct, int totalPrice) {
+    public CartModel(int productId, String name, int price, int image, int numberOfProduct, int totalPrice) {
         this.productId = productId;
         this.name = name;
         this.price = price;
@@ -41,11 +41,11 @@ public class CartModel {
         this.price = price;
     }
 
-    public byte[] getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -28,6 +29,8 @@ public class ProductActivity extends AppCompatActivity {
     static TextView totalPriceCart;
     static TextView txtSizeItem;
     static Button btnGoCart;
+
+
     String result ;
 
     @Override
@@ -81,6 +84,7 @@ public class ProductActivity extends AppCompatActivity {
         txtSizeItem = (TextView) findViewById(R.id.txtSizeItem);
         //Button
         btnGoCart = (Button) findViewById(R.id.btnCheckOut);
+
     }
     public  static  void enableButton(Boolean isEnable){
         btnGoCart.setEnabled(isEnable);

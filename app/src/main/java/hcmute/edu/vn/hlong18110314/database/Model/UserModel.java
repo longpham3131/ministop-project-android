@@ -9,7 +9,7 @@ public class UserModel {
     private String fullName;
     private String point;
     private String role;
-    private byte[] image;
+    private int image;
 
     public Integer getId() {
         return id;
@@ -43,11 +43,11 @@ public class UserModel {
         this.password = password;
     }
 
-    public byte[] getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

@@ -3,17 +3,17 @@ package hcmute.edu.vn.hlong18110314.database.Model;
 public class CategoryModel {
     private Integer id;
     private String name;
-    private byte[] image;
+    private int image;
 
     public CategoryModel() {
     }
 
-    public CategoryModel(String _name, byte[] _image) {
+    public CategoryModel(String _name, int _image) {
         this.name = _name;
         this.image = _image;
     }
 
-    public CategoryModel(int _id, String _name, byte[] _image) {
+    public CategoryModel(int _id, String _name, int _image) {
         id = _id;
         name = _name;
         image = _image;
@@ -35,11 +35,11 @@ public class CategoryModel {
         this.name = name;
     }
 
-    public byte[] getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(int image) {
         this.image = image;
     }
 }
