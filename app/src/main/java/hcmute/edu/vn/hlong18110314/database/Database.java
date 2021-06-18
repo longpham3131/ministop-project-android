@@ -54,19 +54,10 @@ public class Database extends SQLiteOpenHelper {
     private static final String TABLE_CATEGORY = "category";
     // Product
     private static final String TABLE_PRODUCT ="product";
-    // Voucher
-    private static final String TABLE_VOUCHER ="voucher";
-    // Service
-    private static final String TABLE_SERVICE = "service";
-    // Store
-    private static final String TABLE_STORE = "store";
-    // Notification
-    private static final String TABLE_NOTIFICATION = "notification";
     // Order
     private static final String TABLE_ORDER = "orderProduct";
     // OrderDetail
     private static final String TABLE_ORDER_DETAIL = "orderdetail";
-
     // Constructor
     public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory) {
         super(context, name, factory, DATABASE_VERSION);

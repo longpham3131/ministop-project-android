@@ -127,17 +127,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 if(MainActivity.arrayCart.get(i).getProductId() == product.getId()){
                     MainActivity.arrayCart.get(i).setNumberOfProduct(MainActivity.arrayCart.get(i).getNumberOfProduct() - 1);
                     MainActivity.arrayCart.get(i).setTotalPrice((int) (MainActivity.arrayCart.get(i).getTotalPrice() - product.getPrice()));
-                    productActivity.calculatorTotalPrice();
+
                     if(Integer.parseInt(txtValues.getText().toString()) < 1){
                         holder.btnMinus.setVisibility(View.INVISIBLE);
                         holder.txtValues.setVisibility(View.INVISIBLE);
                         MainActivity.arrayCart.remove(i);
                         if(MainActivity.arrayCart.size()== 0 ){
+
                             productActivity.enableButton(false);
                         }
                     }
                 }
             }
+            productActivity.calculatorTotalPrice();
 
 
         });

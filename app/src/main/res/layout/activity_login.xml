@@ -47,7 +47,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/radius_login"
-        android:text="user@gmail.com"
+        android:text="longpham3131@gmail.com"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:paddingLeft="5dp"
